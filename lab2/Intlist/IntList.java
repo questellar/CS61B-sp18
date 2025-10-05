@@ -1,5 +1,7 @@
 import java.util.Formatter;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * A naked recursive list of integers, similar to what we saw in lecture 3, but
  * with a large number of additional methods.
@@ -83,11 +85,16 @@ public class IntList {
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
         IntList head = A, prev = A;
+        final IntList start = A;
         while (A != null) {
             prev = A;
             A = A.rest;
         }
-        prev.rest = B;
+        if (start != null) {
+            prev.rest = B;
+        } else {
+            head = B;
+        }
         return head;
     }
 
